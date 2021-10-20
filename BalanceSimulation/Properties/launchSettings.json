@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "BalanceSimulation": {
+      "commandName": "Project",
+      "commandLineArgs": "SimBalanceStgy"
+    }
+  }
+}
