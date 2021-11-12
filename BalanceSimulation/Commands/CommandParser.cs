@@ -20,7 +20,7 @@ namespace BalanceSimulation.Commands
 
             var command = FindRequestedCommand(requestedCommandName);
             if (null == command)
-                return new NotFoundCommand { Name = requestedCommandName };
+                return new NotFoundCommand { CommandName = requestedCommandName };
 
             return command.MakeCommand(args);
         }

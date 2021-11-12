@@ -56,7 +56,8 @@ namespace BalanceSimulation
             return new ICommandFactory[]
                 {
                     new SimBalanceStgyCommand(),
-                    new SimPerfStgyCommand()
+                    new SimPerfStgyCommand(),
+                    new SimNoStgyCommand()
                 };
         }
 

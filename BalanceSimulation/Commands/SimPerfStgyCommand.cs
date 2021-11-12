@@ -8,17 +8,12 @@ using System.Text;
 
 namespace BalanceSimulation.Commands
 {
-    class SimPerfStgyCommand : ICommandFactory, ICommand
+    class SimPerfStgyCommand : AbstractCommand, ICommandFactory 
     {
-        public string CommandName { get { return "SimPerfStgy"; } }
-
-        public void Execute()
-        {
-            var simResults = CalcStgyStats();
-            SimResult.SaveResults(simResults, CommandName);
+        public SimPerfStgyCommand(): base("SimPerfStgy") { 
         }
 
-        private List<SimResult> CalcStgyStats()
+        override internal List<SimResult> CalcStrategy()
         {
             var yearsStats = StockStats.StatsRecords.Zip(BondStats.StatsRecords, (s, b) => new { Stocks = s, Bonds = b });
             var simResults = new List<SimResult>();

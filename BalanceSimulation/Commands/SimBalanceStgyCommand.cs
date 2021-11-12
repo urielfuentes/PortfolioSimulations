@@ -5,17 +5,13 @@ using System.Text;
 
 namespace BalanceSimulation.Commands
 {
-    class SimBalanceStgyCommand : ICommandFactory, ICommand
+    class SimBalanceStgyCommand : AbstractCommand, ICommandFactory
     {
-        public string CommandName { get { return "SimBalanceStgy"; } }
-
-        public void Execute()
+        public SimBalanceStgyCommand() : base("SimBalanceStgy")
         {
-            var simResults = CalculateStgyStats();
-            SimResult.SaveResults(simResults, CommandName);
         }
 
-        private static List<SimResult> CalculateStgyStats()
+        override internal List<SimResult> CalcStrategy()
         {
             var yearsStats = StockStats.StatsRecords.Zip(BondStats.StatsRecords, (s, b) => new { Stocks = s, Bonds = b });
 

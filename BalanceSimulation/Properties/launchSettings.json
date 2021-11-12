@@ -2,7 +2,7 @@
   "profiles": {
     "BalanceSimulation": {
       "commandName": "Project",
-      "commandLineArgs": "SimBalanceStgy"
+      "commandLineArgs": "SimNoStgy"
     }
   }
 }

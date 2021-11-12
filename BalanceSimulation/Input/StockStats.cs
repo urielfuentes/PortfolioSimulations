@@ -36,6 +36,7 @@ namespace BalanceSimulation
                     {
                         double recordMonthlyGain = (stockRecord.IndexValue / lastStockStats.Record.IndexValue);
                         newStockStats.GainLastMonth = recordMonthlyGain;
+                        //Security index is growing
                         if ((stockRecord.IndexValue / lastStockStats.Peak) - 1 > -0.05)
                         {
                             double newGainInYear;
@@ -85,6 +86,5 @@ namespace BalanceSimulation
                 }
             }
         }
-
     }
 }
