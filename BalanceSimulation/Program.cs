@@ -14,9 +14,6 @@ namespace BalanceSimulation
         static void Main(string[] args)
         {
             StockStats.CalcStocksStats(StockStats.StatsRecords);
-
-            //CalcThresholds(stocksStats);
-
             BondStats.CalcBondsStats(BondStats.StatsRecords);
 
             var availableCommands = GetAvailableCommands();

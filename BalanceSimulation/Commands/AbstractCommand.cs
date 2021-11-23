@@ -17,12 +17,12 @@ namespace BalanceSimulation.Commands
         public void Execute()
         {
             Console.WriteLine("Simulating the strategy.");
-            var simResults = CalcStrategy();
+            var simResults = CalculateStrategy();
             Console.WriteLine("Finished simulating the strategy.");
             SimResult.SaveResults(simResults, CommandName);
             Console.WriteLine("Finished saving the results.");
         }
 
-        internal abstract List<SimResult> CalcStrategy();
+        internal abstract List<SimResult> CalculateStrategy();
     }
 }

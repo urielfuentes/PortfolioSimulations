@@ -11,7 +11,7 @@ namespace BalanceSimulation.Commands
         {
         }
 
-        override internal List<SimResult> CalcStrategy()
+        override internal List<SimResult> CalculateStrategy()
         {
             var yearsStats = StockStats.StatsRecords.Zip(BondStats.StatsRecords, (s, b) => new { Stocks = s, Bonds = b });
 

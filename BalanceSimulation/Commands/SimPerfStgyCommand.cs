@@ -8,12 +8,18 @@ using System.Text;
 
 namespace BalanceSimulation.Commands
 {
+    /// <summary>
+    /// This strategy calculates rebalancing based on the recent performance of stocks.
+    /// If stocks have had annual gains in last year, stocks will be sold proportional to the gains.
+    /// If stocks have decreased, stocks will be bought based on the difference from peak value.
+    /// The values that determine the proportion of rebalance are set in the simulation parameters.
+    /// </summary>
     class SimPerfStgyCommand : AbstractCommand, ICommandFactory 
     {
         public SimPerfStgyCommand(): base("SimPerfStgy") { 
         }
 
-        override internal List<SimResult> CalcStrategy()
+        override internal List<SimResult> CalculateStrategy()
         {
             var yearsStats = StockStats.StatsRecords.Zip(BondStats.StatsRecords, (s, b) => new { Stocks = s, Bonds = b });
             var simResults = new List<SimResult>();
@@ -47,10 +53,6 @@ namespace BalanceSimulation.Commands
                             stockPortFolioVal += incValue;
                             bondPortFolioVal -= incValue;
                         }
-                        else
-                        {
-
-                        }
                     }
 
                     if (yearStats.Stocks.GainLastYear.HasValue)
@@ -60,8 +62,8 @@ namespace BalanceSimulation.Commands
                         if (annualDecRatio > 0)
                         {
                             double gain = (double)yearStats.Stocks.GainLastYear;
-                            double decRatio = (gain - (gain - 1) / 2) / gain;
-                            double decValue = decRatio * stockPortFolioVal * (annualDecRatio / 12);
+                            double avgRatio = (gain - (gain - 1) / 2) / gain;
+                            double decValue = avgRatio * stockPortFolioVal * (annualDecRatio / 12);
                             stockPortFolioVal -= decValue;
                             bondPortFolioVal += decValue;
                         }
