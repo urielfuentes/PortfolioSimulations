@@ -64,6 +64,8 @@ namespace BalanceSimulation
             Console.WriteLine("Commands:");
             foreach (var command in availableCommands)
                 Console.WriteLine("  {0}", command.CommandName);
+            Console.WriteLine("Options:");
+            Console.WriteLine("  --save-results");
         }
     }
 }

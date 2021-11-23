@@ -7,9 +7,9 @@ namespace BalanceSimulation.Commands
 {
     class SimBalanceStgyCommand : AbstractCommand, ICommandFactory
     {
-        public SimBalanceStgyCommand() : base("SimBalanceStgy")
-        {
-        }
+        public SimBalanceStgyCommand() : base("SimBalanceStgy") { }
+
+        public SimBalanceStgyCommand(string commandName, string[] options) : base(commandName, options) { }
 
         override internal List<SimResult> CalculateStrategy()
         {
@@ -55,7 +55,7 @@ namespace BalanceSimulation.Commands
 
         public ICommand MakeCommand(string[] arguments)
         {
-            return new SimBalanceStgyCommand();
+            return new SimBalanceStgyCommand(arguments[0], arguments.Skip(1).ToArray());
         }
     }
 }

@@ -16,8 +16,10 @@ namespace BalanceSimulation.Commands
     /// </summary>
     class SimPerfStgyCommand : AbstractCommand, ICommandFactory 
     {
-        public SimPerfStgyCommand(): base("SimPerfStgy") { 
-        }
+        public SimPerfStgyCommand(): base("SimPerfStgy") { }
+
+        public SimPerfStgyCommand(string commandName, string[] options) : base(commandName, options) { }
+
 
         override internal List<SimResult> CalculateStrategy()
         {
@@ -82,7 +84,7 @@ namespace BalanceSimulation.Commands
 
         public ICommand MakeCommand(string[] arguments)
         {
-            return new SimPerfStgyCommand();
+            return new SimPerfStgyCommand(arguments[0], arguments.Skip(1).ToArray());
         }
 
         private double CalcIncreaseRatio(double fromPeakDecrease)
