@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BalanceSimulation
+﻿namespace BalanceSimulation
 {
     public static class SimulationParams
     {

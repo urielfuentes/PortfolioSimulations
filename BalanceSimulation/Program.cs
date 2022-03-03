@@ -1,10 +1,6 @@
 ﻿using BalanceSimulation.Commands;
-using CsvHelper;
-using CsvHelper.Configuration;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
 using System.Linq;
 
 namespace BalanceSimulation
@@ -29,6 +25,26 @@ namespace BalanceSimulation
             command.Execute();
         }
 
+        static IEnumerable<ICommandFactory> GetAvailableCommands()
+        {
+            return new ICommandFactory[]
+                {
+                    new SimBalanceStgyCommand(),
+                    new SimPerfStgyCommand(),
+                    new SimNoStgyCommand()
+                };
+        }
+
+        private static void PrintUsage(IEnumerable<ICommandFactory> availableCommands)
+        {
+            Console.WriteLine(@"Usage: .\BalanceSimulation CommandName Options");
+            Console.WriteLine("Commands:");
+            foreach (var command in availableCommands)
+                Console.WriteLine("  {0}", command.CommandName);
+            Console.WriteLine("Options:");
+            Console.WriteLine("  --save-results");
+        }
+
         private static void CalcThresholds(List<StockStats> recordsStats)
         {
             Console.WriteLine("High Threshold");
@@ -46,26 +62,6 @@ namespace BalanceSimulation
                 int numLow = recordsStats.Count(r => r.Record.IndexValue / r.Peak - 1 < lowThreshold);
                 Console.WriteLine($"{lowThreshold * 100:0.##}\t{numLow}\t{(double)numLow / 1800 * 100:0.##}");
             }
-        }
-
-        static IEnumerable<ICommandFactory> GetAvailableCommands()
-        {
-            return new ICommandFactory[]
-                {
-                    new SimBalanceStgyCommand(),
-                    new SimPerfStgyCommand(),
-                    new SimNoStgyCommand()
-                };
-        }
-
-        private static void PrintUsage(IEnumerable<ICommandFactory> availableCommands)
-        {
-            Console.WriteLine("Usage: LoggingDemo CommandName Arguments");
-            Console.WriteLine("Commands:");
-            foreach (var command in availableCommands)
-                Console.WriteLine("  {0}", command.CommandName);
-            Console.WriteLine("Options:");
-            Console.WriteLine("  --save-results");
         }
     }
 }

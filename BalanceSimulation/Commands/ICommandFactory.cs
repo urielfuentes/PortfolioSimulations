@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BalanceSimulation.Commands
+﻿namespace BalanceSimulation.Commands
 {
     public interface ICommandFactory
     {
