@@ -26,7 +26,6 @@ namespace BalanceSimulation.Commands
         {
             Console.WriteLine("Simulating the strategy.");
             var simResults = CalculateStrategy();
-
             Console.WriteLine("Finished simulating the strategy.");
 
             if (IsSaveInOptions())

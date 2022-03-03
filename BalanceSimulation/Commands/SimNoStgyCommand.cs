@@ -5,6 +5,10 @@ using System.Text;
 
 namespace BalanceSimulation.Commands
 {
+    /// <summary>
+    /// Calculates the performance in different periods when no rebalancing is made from the capital.
+    /// </summary>
+
     class SimNoStgyCommand : AbstractCommand, ICommandFactory
     {
 
@@ -47,6 +51,7 @@ namespace BalanceSimulation.Commands
 
         public ICommand MakeCommand(string[] arguments)
         {
+            //pass command name and arguments
             return new SimNoStgyCommand(arguments[0], arguments.Skip(1).ToArray());
         }
     }

@@ -14,6 +14,7 @@ namespace BalanceSimulation.Commands
     /// If stocks have decreased, stocks will be bought based on the difference from peak value.
     /// The values that determine the proportion of rebalance are set in the simulation parameters.
     /// </summary>
+
     class SimPerfStgyCommand : AbstractCommand, ICommandFactory 
     {
         public SimPerfStgyCommand(): base("SimPerfStgy") { }
@@ -84,6 +85,7 @@ namespace BalanceSimulation.Commands
 
         public ICommand MakeCommand(string[] arguments)
         {
+            //pass command name and arguments
             return new SimPerfStgyCommand(arguments[0], arguments.Skip(1).ToArray());
         }
 

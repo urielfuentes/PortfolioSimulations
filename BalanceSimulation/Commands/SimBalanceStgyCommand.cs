@@ -5,6 +5,11 @@ using System.Text;
 
 namespace BalanceSimulation.Commands
 {
+    /// <summary>
+    /// Rebalance strategy based in assets wheights. 
+    /// When the weight of stcoks is below or above a threshold rebalancing is made.
+    /// </summary>
+
     class SimBalanceStgyCommand : AbstractCommand, ICommandFactory
     {
         public SimBalanceStgyCommand() : base("SimBalanceStgy") { }
@@ -55,6 +60,7 @@ namespace BalanceSimulation.Commands
 
         public ICommand MakeCommand(string[] arguments)
         {
+            //pass command name and arguments
             return new SimBalanceStgyCommand(arguments[0], arguments.Skip(1).ToArray());
         }
     }
