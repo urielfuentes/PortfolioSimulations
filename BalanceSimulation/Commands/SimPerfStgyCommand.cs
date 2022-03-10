@@ -86,28 +86,10 @@ namespace BalanceSimulation.Commands
 
         private double CalcIncreaseRatio(double fromPeakDecrease)
         {
-            double decRatio = 0;
-            int breakpoint = 0;
-
-            while (breakpoint < SimulationParams.STGY_HIGH_BREAKPOINTS.Length && SimulationParams.STGY_LOW_BREAKPOINTS[breakpoint] >= fromPeakDecrease)
-            {
-                breakpoint++;
-            }
-
-            if (breakpoint > 0)
-            {
-                decRatio = SimulationParams.STGY_RATIOS[breakpoint - 1];
-            }
-
-            return decRatio;
-        }
-
-        private double CalcDecreaseRatio(double lastYearGain)
-        {
             double incRatio = 0;
             int breakpoint = 0;
 
-            while (breakpoint < SimulationParams.STGY_HIGH_BREAKPOINTS.Length && SimulationParams.STGY_HIGH_BREAKPOINTS[breakpoint] <= lastYearGain)
+            while (breakpoint < SimulationParams.STGY_HIGH_BREAKPOINTS.Length && SimulationParams.STGY_LOW_BREAKPOINTS[breakpoint] >= fromPeakDecrease)
             {
                 breakpoint++;
             }
@@ -118,6 +100,24 @@ namespace BalanceSimulation.Commands
             }
 
             return incRatio;
+        }
+
+        private double CalcDecreaseRatio(double lastYearGain)
+        {
+            double decRatio = 0;
+            int breakpoint = 0;
+
+            while (breakpoint < SimulationParams.STGY_HIGH_BREAKPOINTS.Length && SimulationParams.STGY_HIGH_BREAKPOINTS[breakpoint] <= lastYearGain)
+            {
+                breakpoint++;
+            }
+
+            if (breakpoint > 0)
+            {
+                decRatio = SimulationParams.STGY_RATIOS[breakpoint - 1];
+            }
+
+            return decRatio;
         }
     }
 }
